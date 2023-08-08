@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\students\\Desktop\\CuongXMHT\\Source\\Bkacad\\NewApp\\NewApp.csproj": {}
+    "D:\\Vicem\\CuongXMHT\\Bkacad\\NewApp\\NewApp.csproj": {}
   },
   "projects": {
-    "c:\\Users\\students\\Desktop\\CuongXMHT\\Source\\Bkacad\\NewApp\\NewApp.csproj": {
+    "D:\\Vicem\\CuongXMHT\\Bkacad\\NewApp\\NewApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\students\\Desktop\\CuongXMHT\\Source\\Bkacad\\NewApp\\NewApp.csproj",
+        "projectUniqueName": "D:\\Vicem\\CuongXMHT\\Bkacad\\NewApp\\NewApp.csproj",
         "projectName": "NewApp",
-        "projectPath": "c:\\Users\\students\\Desktop\\CuongXMHT\\Source\\Bkacad\\NewApp\\NewApp.csproj",
+        "projectPath": "D:\\Vicem\\CuongXMHT\\Bkacad\\NewApp\\NewApp.csproj",
         "packagesPath": "C:\\Users\\students\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\students\\Desktop\\CuongXMHT\\Source\\Bkacad\\NewApp\\obj\\",
+        "outputPath": "D:\\Vicem\\CuongXMHT\\Bkacad\\NewApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\students\\AppData\\Roaming\\NuGet\\NuGet.Config"

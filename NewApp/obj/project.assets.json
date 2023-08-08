@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\students\\Desktop\\CuongXMHT\\Source\\Bkacad\\NewApp\\NewApp.csproj",
+      "projectUniqueName": "d:\\Vicem\\CuongXMHT\\Bkacad\\NewApp\\NewApp.csproj",
       "projectName": "NewApp",
-      "projectPath": "c:\\Users\\students\\Desktop\\CuongXMHT\\Source\\Bkacad\\NewApp\\NewApp.csproj",
+      "projectPath": "d:\\Vicem\\CuongXMHT\\Bkacad\\NewApp\\NewApp.csproj",
       "packagesPath": "C:\\Users\\students\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\students\\Desktop\\CuongXMHT\\Source\\Bkacad\\NewApp\\obj\\",
+      "outputPath": "d:\\Vicem\\CuongXMHT\\Bkacad\\NewApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\students\\AppData\\Roaming\\NuGet\\NuGet.Config"
