@@ -33,7 +33,12 @@ System.Console.WriteLine($"LCB={LCB}, HeSo={HeSo}, PC={PC}");
 System.Console.WriteLine($"Luong = LCB*HeSo + PC");
 System.Console.WriteLine($"Luong = {LCB*HeSo + PC}");
 */
-
+/*
 Employee employee=new Employee();
 employee.NhapThongTin();
 employee.HienThi();
+*/
+
+Student student=new Student();
+student.CreateNew();
+student.ShowStudent();
