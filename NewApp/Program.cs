@@ -1,5 +1,17 @@
-﻿using NewApp.Models;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using NewApp.Models;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using NewApp.DB;
 
+var configurations=new ConfigurationBuilder().AddJsonFile("appsettings.json");
+var config=configurations.Build();
+var connectionString=config.GetConnectionString("Database");
+
+var services=new ServiceCollection();
+services.AddDbContext<HumanDbContext>(option=>option.UseSqlite(connectionString));
+ 
 // See https://aka.ms/new-console-template for more information
 // Console.WriteLine("Hello, World!");
 
@@ -61,3 +73,8 @@ for(int i=0;i<n;i++)
     System.Console.WriteLine($"-----{i+1}------");
     arrPerson[i].ShowInfo();
 }
+
+
+
+
+
