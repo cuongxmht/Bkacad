@@ -1,3 +1,4 @@
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
 namespace NewApp.Models
@@ -45,6 +46,61 @@ namespace NewApp.Models
             Tuoi: {GetAge()}";
             
             System.Console.WriteLine(info);
+        }
+        
+        
+        public void ChangeName(ArrayList arrayList)
+        {
+            System.Console.Write("\nNhap ten user can sua: ");
+            string updUser=Console.ReadLine();
+
+            System.Console.Write("\nTen moi: ");
+            string newName=Console.ReadLine();
+            if(arrayList?.Count<=0)return;
+            foreach(var item in arrayList)
+            {
+                var ps=(Person)item;
+                if(ps.Name !=updUser ) continue;
+                ps.Name=newName;
+            }
+        }
+        public void RemoveByName(ArrayList arrayList)
+        {
+            if(arrayList?.Count<=0)return;
+            System.Console.Write("\nNhap ten user can xoa: ");
+            string updUser=Console.ReadLine();
+
+
+            ArrayList delList=new ArrayList();
+            foreach(var item in arrayList)
+            {
+                var ps=(Person)item;
+                if(ps.Name !=updUser) continue;
+                delList.Add(ps);
+            }
+            if(delList.Count >0) 
+                foreach(var item in delList)    
+                    arrayList.Remove(item);
+
+        }
+        public void AddNew(ArrayList psList)
+        {
+            Person ps = new Person();
+            ps.CreateNew();
+            psList.Add(ps);
+        }
+    public void ShowInfoAll(ArrayList psList)
+        {
+            foreach(var item in psList) 
+            {
+                Person ps=(Person)item;
+                string info=@$"Id: {ps.Id}, 
+                Ten: {ps.Name}, 
+                dia chi: {ps.Address},             
+                Tuoi: {ps.GetAge()}";
+                
+                System.Console.WriteLine(info);
+            }
         }
     }
 }

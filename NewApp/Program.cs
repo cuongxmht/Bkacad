@@ -1,13 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Collections.Immutable;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using NewApp.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using NewApp.DB;
 using System.Collections;
+using System.Reflection;
 
+var x=Directory.GetCurrentDirectory();
 var configurations=new ConfigurationBuilder()
-.SetBasePath(Directory.GetCurrentDirectory())
+//.SetBasePath(Directory.GetCurrentDirectory())
+// .SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
 .AddJsonFile("appsettings.json");
 var config=configurations.Build();
 var connectionString=config.GetConnectionString("Database");
@@ -79,6 +83,7 @@ for(int i=0;i<n;i++)
 }
 */
 //Array list
+/*
 System.Console.Write("Nhap so phan tu: ");
 int n;
 while(true)
@@ -102,7 +107,30 @@ for(int i=0;i<n;i++)
     var person=arrPerson[i] as Person;
     person.ShowInfo();
 }
+*/
 
+//Cap nhat ten trong arraylist person 
+int n=5;
+ArrayList arrPerson=new ArrayList();
+for(int i=0;i<n;i++)
+{
+    Person person=new Person(id:Guid.NewGuid(), name:$"User{i}",address:$"Address {i}",yearOfBirth: (new Random().Next(1980,2000)));
+    arrPerson.Add(person);
+}
+System.Console.WriteLine("\nHien thi thong tin");
+for(int i=0;i<n;i++)
+{
+    System.Console.WriteLine($"-----{i+1}------");
+    var person=arrPerson[i] as Person;
+    person.ShowInfo();
+}
+
+Person ps=new Person();
+ps.AddNew(arrPerson);
+ps.ChangeName(arrPerson);
+ps.RemoveByName(arrPerson);
+ps.ShowInfoAll(arrPerson);
+/*
 var serviceProvider=services.BuildServiceProvider();
 var scope=serviceProvider.CreateScope();
 var db=scope.ServiceProvider.GetService<HumanDbContext>();
@@ -112,3 +140,4 @@ db.Persons.Add(new Person{
 System.Console.WriteLine("\n\nHIEN THI THONG TIN TU DB");
 db.Persons?.FirstOrDefault()?.ShowInfo();
 
+*/
