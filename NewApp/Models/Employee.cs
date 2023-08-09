@@ -1,39 +1,25 @@
 using System;
 namespace NewApp.Models
 {
-    public class Employee{
-        public String HoTen { get; set; }
-        public string  DiaChi { get; set; }
-        public int NamSinh { get; set; }
-public Employee(string ht,string dc)
-{
-    HoTen=ht;
-    DiaChi=dc;
-}
-public Employee()
-{
-    
-}
-        public void NhapThongTin()
+    public class Employee:Person
+    {
+        public String EmployeeId { get; set; }
+        
+        public void CreateNew()
         {
-            System.Console.Write("Ho ten: ");
-            this.HoTen = Console.ReadLine();
-
-            System.Console.Write("Dia chi: ");
-            this.DiaChi = Console.ReadLine();
-            System.Console.Write("Nam: ");
-            this.NamSinh = int.Parse(Console.ReadLine());
+            base.CreateNew();
+            System.Console.Write("EmployeeId: ");
+            this.EmployeeId = Console.ReadLine();
         }
 
-        public void HienThi()
+        public void ShowInfo()
         {
-            System.Console.WriteLine("------");
-            System.Console.WriteLine($"Nhan vien: {HoTen} - {DiaChi}");
-            System.Console.WriteLine($"Tuoi: {TinhTuoi()}");
+            base.ShowInfo();
+            
+            string info=$"Ma NV: {EmployeeId}";
+            
+            System.Console.WriteLine(info);
         }
-        public int TinhTuoi()
-        {
-            return DateTime.Now.Year - NamSinh;
-        }
+        
     }
 }

@@ -23,11 +23,32 @@ namespace NewApp.Models
         {
             
         }
+        public void CreateNew()
+        {
+            System.Console.Write("Ten: ");            
+            this.Name=Console.ReadLine();
+            System.Console.Write("Dia chi: ");            
+            this.Address=Console.ReadLine();
+            System.Console.Write("Nam sinh: ");            
+            this.YearOfBirth=int.Parse(Console.ReadLine());
+            
+            this.Id=Guid.NewGuid();
+        }
         public int GetAge()
         {
-            if(YearOfBirth<DateTime.Now.Year) System.Console.WriteLine("Chua nhap ngay sinh, hoac nhap khong dung");
-            int age=YearOfBirth-DateTime.Now.Year;
+            if(YearOfBirth>DateTime.Now.Year) System.Console.WriteLine("Chua nhap ngay sinh, hoac nhap khong dung");
+            int age=DateTime.Now.Year-YearOfBirth;
             return age;
+        }
+
+        public void ShowInfo()
+        {
+            string info=@$"Id: {Id}, 
+            Ten: {Name}, 
+            dia chi: {Address},             
+            Tuoi: {GetAge()}";
+            
+            System.Console.WriteLine(info);
         }
     }
 }

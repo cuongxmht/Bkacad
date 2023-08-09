@@ -13,28 +13,24 @@ namespace NewApp.Models
         public int Point { get; set; }
         public void CreateNew()
         {
-            System.Console.Write("Ten: ");            
-            this.Name=Console.ReadLine();
-            System.Console.Write("Dia chi: ");            
-            this.Address=Console.ReadLine();
-            System.Console.Write("Nam sinh: ");            
+            base.CreateNew();       
             this.YearOfBirth=int.Parse(Console.ReadLine());
             System.Console.Write("Ma SV: ");            
             this.StudentCode=Console.ReadLine();
             System.Console.Write("Khoa: ");            
             this.Department=Console.ReadLine();
-            this.Id=Guid.NewGuid();
+            
         }
 
-        public void ShowStudent()
+        public void ShowInfo()
         {
-            string info=@$"Id: {Id}, 
-            Ten: {Name}, 
-            dia chi: {Address}, 
+            base.ShowInfo();
+
+            string info=@$"
             MaSV: {StudentCode}, 
             Khoa: {Department},   
             Diem: {Point}, 
-            Tuoi: {GetAge()}";
+            ";
             
             System.Console.WriteLine(info);
         }

@@ -38,7 +38,26 @@ Employee employee=new Employee();
 employee.NhapThongTin();
 employee.HienThi();
 */
-
+//Huong doi tuong, ke thua
+/*
 Student student=new Student();
 student.CreateNew();
-student.ShowStudent();
+student.ShowInfo();
+*/
+//Mang, ds
+System.Console.Write("Nhap so phan tu: ");
+int n=Convert.ToInt32(Console.ReadLine());
+Person[] arrPerson=new Person[n];
+for(int i=0;i<n;i++)
+{
+    System.Console.WriteLine($"{i+1}");
+    Person person=new Person();
+    person.CreateNew();
+    arrPerson[i]=person;
+}
+System.Console.WriteLine("\nHien thi thong tin");
+for(int i=0;i<n;i++)
+{
+    System.Console.WriteLine($"-----{i+1}------");
+    arrPerson[i].ShowInfo();
+}
