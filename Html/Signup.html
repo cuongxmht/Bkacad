@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Singup</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="bootstrap.css" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    
+    </head>
+    <body>
+        
+        <div style="width: 25rem;background-color: lightgray;margin: auto; padding: 10px; margin-top: 20px;">
+            <h2><b>Sing Up</b></h2>
+            <p>It's free and always will be.</p>
+        
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <input type="text" class="form-control" placeholder="First name"/>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <input type="text" class="form-control" placeholder="Last name"/>
+                </div>
+            </div>
+            <input type="email" class="my-1 form-control" placeholder="Email or mobile number"/>
+            <input type="email" class="my-1 form-control" placeholder="Re-enter email or mobile number"/>
+            <input type="password" class="my-1 form-control" placeholder="New password"/>
+            <div><b>Birthday</b></div>
+            <div>
+                <select id="month" aria-label="month">
+                    <option value="">Month</option>
+                </select>
+                <select id="day" aria-label="day">
+                    <option value="">Day</option>
+                </select>
+                <select id="year" aria-label="year">
+                    <option value="">Year</option>
+                </select>
+                <span style="font-size: x-small;">Why do I need to provide my birthday</span>
+            </div>
+            <div>
+                <input type="radio" id="female" name="gender" value="0" ><b>Female</b>
+                <input type="radio" id="male" name="gender" value="1" ><b>Male</b>
+            </div>
+            <p style="font-size: x-small;">
+                By click sign up, you agree to our <span style="color: blue;">Terms</span> and that you have read our <span style="color: blue;">Data Policy</span>, including our <span style="color: blue;">Cookie use</span>
+            </p>
+            <button type="button" class="btn btn-sm btn-success" style="width: 6rem;">Sign Up</button>
+        </div>
+
+    </body>
+</html>
