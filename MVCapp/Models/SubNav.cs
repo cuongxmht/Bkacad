@@ -9,5 +9,6 @@ namespace MVCapp.Models{
         public string ParentId { get; set; }
         public string Title { get; set; }
         public NavBar NavBar { get; set; }
+        
     }
 }
