@@ -2,8 +2,12 @@ git config --global --unset-all
 
 
 #Add a model to an ASP.NET Core MVC app
-#Link tai lieu
+#Link tai lieu MVC
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-7.0&tabs=visual-studio-code
+
+#Link tai lieu thay Hien
+https://github.com/phamquanghien/NetApiVicem/tree/main/MVCApp
+
 
 dotnet tool install --global dotnet-ef --version 3.1.9
 dotnet tool install --global dotnet-aspnet-codegenerator --version 3.1.4
