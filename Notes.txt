@@ -1,0 +1,22 @@
+git config --global --unset-all
+
+
+#Add a model to an ASP.NET Core MVC app
+#Link tai lieu
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-7.0&tabs=visual-studio-code
+
+dotnet tool install --global dotnet-ef --version 3.1.9
+dotnet tool install --global dotnet-aspnet-codegenerator --version 3.1.4
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 3.1.9
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 3.1.9
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.1.4
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.9
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.1.9
+dotnet add package Microsoft.Extensions.Logging.Debug --version 3.1.9
+
+# generate controller, view, DBContext from model
+dotnet aspnet-codegenerator controller -name PersonController -m Person -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name StudentController -m Student -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+
+
+dotnet ef migrations add InitialDb
