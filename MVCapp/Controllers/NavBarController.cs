@@ -9,87 +9,87 @@ using MVCapp.Models;
 
 namespace MVCapp.Controllers
 {
-    public class PersonController : Controller
+    public class NavBarController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public PersonController(ApplicationDbContext context)
+        public NavBarController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Person
+        // GET: NavBar
         public async Task<IActionResult> Index()
         {
-              return _context.Person != null ? 
-                          View(await _context.Person.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Person'  is null.");
+              return _context.NavBar != null ? 
+                          View(await _context.NavBar.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.NavBar'  is null.");
         }
 
-        // GET: Person/Details/5
+        // GET: NavBar/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.Person == null)
+            if (id == null || _context.NavBar == null)
             {
                 return NotFound();
             }
 
-            var person = await _context.Person
-                .FirstOrDefaultAsync(m => m.PersonId == id);
-            if (person == null)
+            var navBar = await _context.NavBar
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (navBar == null)
             {
                 return NotFound();
             }
 
-            return View(person);
+            return View(navBar);
         }
 
-        // GET: Person/Create
+        // GET: NavBar/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Person/Create
+        // POST: NavBar/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonId,FullName,Address,Birthdate")] Person person)
+        public async Task<IActionResult> Create([Bind("Id,Title")] NavBar navBar)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(person);
+                _context.Add(navBar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(person);
+            return View(navBar);
         }
 
-        // GET: Person/Edit/5
+        // GET: NavBar/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.Person == null)
+            if (id == null || _context.NavBar == null)
             {
                 return NotFound();
             }
 
-            var person = await _context.Person.FindAsync(id);
-            if (person == null)
+            var navBar = await _context.NavBar.FindAsync(id);
+            if (navBar == null)
             {
                 return NotFound();
             }
-            return View(person);
+            return View(navBar);
         }
 
-        // POST: Person/Edit/5
+        // POST: NavBar/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("PersonId,FullName,Address,Birthdate")] Person person)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Title")] NavBar navBar)
         {
-            if (id != person.PersonId)
+            if (id != navBar.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace MVCapp.Controllers
             {
                 try
                 {
-                    _context.Update(person);
+                    _context.Update(navBar);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersonExists(person.PersonId))
+                    if (!NavBarExists(navBar.Id))
                     {
                         return NotFound();
                     }
@@ -114,49 +114,49 @@ namespace MVCapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(person);
+            return View(navBar);
         }
 
-        // GET: Person/Delete/5
+        // GET: NavBar/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null || _context.Person == null)
+            if (id == null || _context.NavBar == null)
             {
                 return NotFound();
             }
 
-            var person = await _context.Person
-                .FirstOrDefaultAsync(m => m.PersonId == id);
-            if (person == null)
+            var navBar = await _context.NavBar
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (navBar == null)
             {
                 return NotFound();
             }
 
-            return View(person);
+            return View(navBar);
         }
 
-        // POST: Person/Delete/5
+        // POST: NavBar/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.Person == null)
+            if (_context.NavBar == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Person'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.NavBar'  is null.");
             }
-            var person = await _context.Person.FindAsync(id);
-            if (person != null)
+            var navBar = await _context.NavBar.FindAsync(id);
+            if (navBar != null)
             {
-                _context.Person.Remove(person);
+                _context.NavBar.Remove(navBar);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PersonExists(string id)
+        private bool NavBarExists(string id)
         {
-          return (_context.Person?.Any(e => e.PersonId == id)).GetValueOrDefault();
+          return (_context.NavBar?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
