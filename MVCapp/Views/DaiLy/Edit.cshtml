@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="MaHTPP" class="control-label"></label>
-                <input asp-for="MaHTPP" class="form-control" />
+                <select asp-for="MaHTPP" class="form-control" asp-items="ViewBag.MaHTPP"></select>
                 <span asp-validation-for="MaHTPP" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -39,8 +39,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="MaHTPP" class="control-label"></label>
-                <input asp-for="MaHTPP" class="form-control" />
-                <span asp-validation-for="MaHTPP" class="text-danger"></span>
+                <select asp-for="MaHTPP" class ="form-control" asp-items="ViewBag.MaHTPP"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

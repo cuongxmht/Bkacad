@@ -17,5 +17,7 @@ namespace MVCapp.Models
         public string NguoiDaiDien { get; set; }
         public string DienThoai { get; set; }
         public string MaHTPP { get; set; }
+        [ForeignKey("MaHTPP")]
+        public HeThongPhanPhoi HeThongPhanPhoi { get; set; }
     }
 }

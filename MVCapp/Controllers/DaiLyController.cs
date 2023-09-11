@@ -21,9 +21,8 @@ namespace MVCapp.Controllers
         // GET: DaiLy
         public async Task<IActionResult> Index()
         {
-              return _context.DaiLies != null ? 
-                          View(await _context.DaiLies.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.DaiLies'  is null.");
+            var applicationDbContext = _context.DaiLies.Include(d => d.HeThongPhanPhoi);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: DaiLy/Details/5
@@ -35,6 +34,7 @@ namespace MVCapp.Controllers
             }
 
             var daiLy = await _context.DaiLies
+                .Include(d => d.HeThongPhanPhoi)
                 .FirstOrDefaultAsync(m => m.MaDaiLy == id);
             if (daiLy == null)
             {
@@ -47,6 +47,7 @@ namespace MVCapp.Controllers
         // GET: DaiLy/Create
         public IActionResult Create()
         {
+            ViewData["MaHTPP"] = new SelectList(_context.HeThongPhanPhois, "MaHTPP", "TenHTPP");
             return View();
         }
 
@@ -63,6 +64,7 @@ namespace MVCapp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MaHTPP"] = new SelectList(_context.HeThongPhanPhois, "MaHTPP", "TenHTPP", daiLy.MaHTPP);
             return View(daiLy);
         }
 
@@ -79,6 +81,7 @@ namespace MVCapp.Controllers
             {
                 return NotFound();
             }
+            ViewData["MaHTPP"] = new SelectList(_context.HeThongPhanPhois, "MaHTPP", "MaHTPP", daiLy.MaHTPP);
             return View(daiLy);
         }
 
@@ -114,6 +117,7 @@ namespace MVCapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MaHTPP"] = new SelectList(_context.HeThongPhanPhois, "MaHTPP", "MaHTPP", daiLy.MaHTPP);
             return View(daiLy);
         }
 
@@ -126,6 +130,7 @@ namespace MVCapp.Controllers
             }
 
             var daiLy = await _context.DaiLies
+                .Include(d => d.HeThongPhanPhoi)
                 .FirstOrDefaultAsync(m => m.MaDaiLy == id);
             if (daiLy == null)
             {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MVCapp.Models
 {
-    public class Employee:Person
+    public class Employee : Person
     {
         public string EmployeeId { get; set; }
         public string Age { get; set; }

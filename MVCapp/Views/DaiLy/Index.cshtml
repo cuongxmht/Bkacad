@@ -1,7 +1,7 @@
 @model IEnumerable<MVCapp.Models.DaiLy>
 
 @{
-    ViewData["Title"] = "Dai ly";
+    ViewData["Title"] = "Index";
 }
 
 <h1>Dai ly</h1>
@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.DienThoai)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MaHTPP)
+                @Html.DisplayNameFor(model => model.HeThongPhanPhoi)
             </th>
             <th></th>
         </tr>
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.DienThoai)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaHTPP)
+                @Html.DisplayFor(modelItem => item.HeThongPhanPhoi.MaHTPP)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MaDaiLy">Edit</a> |

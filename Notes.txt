@@ -11,15 +11,25 @@ https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-mod
 #Link tai lieu thay Hien
 https://github.com/phamquanghien/NetApiVicem/tree/main/MVCApp
 
+dotnet tool uninstall --global dotnet-ef
+dotnet tool uninstall --global dotnet-aspnet-codegenerator 
+dotnet remove package Microsoft.EntityFrameworkCore.Sqlite 
+dotnet remove package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore 
+dotnet remove package Microsoft.VisualStudio.Web.CodeGeneration.Design 
+dotnet remove package Microsoft.EntityFrameworkCore.Design 
+dotnet remove package Microsoft.EntityFrameworkCore.SqlServer 
+dotnet remove package Microsoft.Extensions.Logging.Debug 
 
-dotnet tool install --global dotnet-ef --version 3.1.9
-dotnet tool install --global dotnet-aspnet-codegenerator --version 3.1.4
-dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 3.1.9
-dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 3.1.9
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.1.4
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.9
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.1.9
-dotnet add package Microsoft.Extensions.Logging.Debug --version 3.1.9
+
+dotnet tool install --global dotnet-ef 
+	 
+
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite 
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore 
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design 
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer 
+dotnet add package Microsoft.Extensions.Logging.Debug
 
 # generate controller, view, DBContext from model
 dotnet aspnet-codegenerator controller -name PersonController -m Person -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
@@ -27,6 +37,10 @@ dotnet aspnet-codegenerator controller -name StudentController -m Student -dc Ap
 
 dotnet aspnet-codegenerator controller -name SubNavController -m SubNav -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 
+dotnet aspnet-codegenerator controller -name EmployeeController -m Employee -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name HeThongPhanPhoiController -m HeThongPhanPhoi -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name DaiLyController -m DaiLy -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 
 
 dotnet ef migrations add InitialDb
+dotnet ef database update <Name Of Migrations>
