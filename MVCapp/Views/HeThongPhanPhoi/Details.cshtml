@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var daiLies= (List<DaiLy>?)ViewData["DaiLies"];
 }
 
 <h1>Details</h1>
@@ -17,6 +18,20 @@
             @Html.DisplayFor(model => model.TenHTPP)
         </dd>
     </dl>
+    @if(daiLies?.Count()>0)
+    {
+        <dl class="row">
+            <dt class = "col-sm-2">
+                Dai ly
+            </dt>
+            <dd class = "col-sm-10">
+                @foreach(var dl in daiLies)
+                {
+                    <div>@($"{dl.TenDaiLy}, sdt: {dl.DienThoai}, dia chi: {dl.DiaChi}")</div>
+                }
+            </dd>
+        </dl>
+    }
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.MaHTPP">Edit</a> |

@@ -18,6 +18,6 @@ namespace MVCapp.Models
         public string DienThoai { get; set; }
         public string MaHTPP { get; set; }
         [ForeignKey("MaHTPP")]
-        public HeThongPhanPhoi HeThongPhanPhoi { get; set; }
+        public HeThongPhanPhoi? HeThongPhanPhoi { get; set; }
     }
 }

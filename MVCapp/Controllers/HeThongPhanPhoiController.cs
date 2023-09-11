@@ -40,7 +40,7 @@ namespace MVCapp.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["DaiLies"]=heThongPhanPhoi?.DaiLies;
             return View(heThongPhanPhoi);
         }
 
