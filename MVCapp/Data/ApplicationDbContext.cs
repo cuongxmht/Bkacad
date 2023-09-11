@@ -22,9 +22,13 @@ using MVCapp.Models;
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<MVCapp.Models.Person> Person { get; set; } = default!;
+        public DbSet<Person> Person { get; set; } = default!;
 
-        public DbSet<MVCapp.Models.Student> Student { get; set; } = default!;
-    public DbSet<MVCapp.Models.NavBar> NavBar { get; set; } = default!;
-    public DbSet<MVCapp.Models.SubNav> SubNav { get; set; } = default!;
+        public DbSet<Student> Student { get; set; } = default!;
+        public DbSet<NavBar> NavBar { get; set; } = default!;
+        public DbSet<SubNav> SubNav { get; set; } = default!;
+
+        public DbSet<Employee> Employees{get;set;}= default!;
+        public DbSet<HeThongPhanPhoi> HeThongPhanPhois{get;set;}= default!;
+        public DbSet<DaiLy> DaiLies{get;set;}= default!;
 }

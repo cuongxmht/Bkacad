@@ -16,6 +16,50 @@ namespace MVCapp.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
 
+            modelBuilder.Entity("MVCapp.Models.DaiLy", b =>
+                {
+                    b.Property<string>("MaDaiLy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DiaChi")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DienThoai")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MaHTPP")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NguoiDaiDien")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenDaiLy")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("MaDaiLy");
+
+                    b.ToTable("DaiLy");
+                });
+
+            modelBuilder.Entity("MVCapp.Models.HeThongPhanPhoi", b =>
+                {
+                    b.Property<string>("MaHTPP")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenHTPP")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("MaHTPP");
+
+                    b.ToTable("HeThongPhanPhoi");
+                });
+
             modelBuilder.Entity("MVCapp.Models.NavBar", b =>
                 {
                     b.Property<string>("Id")
@@ -42,6 +86,10 @@ namespace MVCapp.Migrations
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -49,6 +97,10 @@ namespace MVCapp.Migrations
                     b.HasKey("PersonId");
 
                     b.ToTable("Person");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("MVCapp.Models.Student", b =>
@@ -83,6 +135,23 @@ namespace MVCapp.Migrations
                     b.HasIndex("ParentId");
 
                     b.ToTable("SubNav");
+                });
+
+            modelBuilder.Entity("MVCapp.Models.Employee", b =>
+                {
+                    b.HasBaseType("MVCapp.Models.Person");
+
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.ToTable("Person");
+
+                    b.HasDiscriminator().HasValue("Employee");
                 });
 
             modelBuilder.Entity("MVCapp.Models.SubNav", b =>

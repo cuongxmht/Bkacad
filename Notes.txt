@@ -25,5 +25,8 @@ dotnet add package Microsoft.Extensions.Logging.Debug --version 3.1.9
 dotnet aspnet-codegenerator controller -name PersonController -m Person -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 dotnet aspnet-codegenerator controller -name StudentController -m Student -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 
+dotnet aspnet-codegenerator controller -name SubNavController -m SubNav -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+
+
 
 dotnet ef migrations add InitialDb
