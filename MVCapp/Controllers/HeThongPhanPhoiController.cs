@@ -40,8 +40,9 @@ namespace MVCapp.Controllers
             {
                 return NotFound();
             }
-            ViewData["DaiLies"]=heThongPhanPhoi?.DaiLies;
+            ViewData["DaiLies"]=_context.DaiLies?.Where(w=>w.MaHTPP==id)?.ToList();
             return View(heThongPhanPhoi);
+            
         }
 
         // GET: HeThongPhanPhoi/Create

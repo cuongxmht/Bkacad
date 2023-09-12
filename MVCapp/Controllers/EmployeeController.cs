@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVCapp.Models;
+using X.PagedList;
 
 namespace MVCapp.Controllers
 {
@@ -19,11 +20,24 @@ namespace MVCapp.Controllers
         }
 
         // GET: Employee
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page, int? pageSize)
         {
-              return _context.Employees != null ? 
-                          View(await _context.Employees.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Employees'  is null.");
+            ViewBag.PageSize=new List< SelectListItem>(){
+                new SelectListItem(){Value="3",Text="3"},
+                new SelectListItem(){Value="5",Text="5"},
+                new SelectListItem(){Value="10",Text="10"},
+                new SelectListItem(){Value="15",Text="15"},
+                new SelectListItem(){Value="20",Text="20"},
+                new SelectListItem(){Value="25",Text="25"}
+            };
+            int pSize=pageSize??3;
+            ViewBag.pSize=pSize;
+
+            var model=_context.Employees?.ToList().ToPagedList(page??1, pSize);
+            return View(model);
+            //   return _context.Employees != null ? 
+            //               View(await _context.Employees.ToListAsync()) :
+            //               Problem("Entity set 'ApplicationDbContext.Employees'  is null.");
         }
 
         // GET: Employee/Details/5
