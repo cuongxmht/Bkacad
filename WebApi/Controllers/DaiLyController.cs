@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         }
 
         // GET: api/DaiLy
-        [HttpGet]
+        [HttpGet("getall")]
         public async Task<ActionResult<IEnumerable<DaiLy>>> GetDaiLies()
         {
           if (_context.DaiLies == null)
@@ -48,6 +48,21 @@ namespace WebApi.Controllers
             }
 
             return daiLy;
+        }
+        [HttpGet("gethethongdaily")]
+        public async Task<ActionResult<IEnumerable<HeThongDaiLy>>> GetHethongDaiLy()
+        {
+            var htdl=await (from dl in _context.DaiLies
+                            join pp in _context.HeThongPhanPhois
+                            on dl.MaHTPP equals pp.MaHTPP
+                            select new HeThongDaiLy{
+                                MaDaiLy=dl.MaDaiLy,
+                                TenDaiLy=dl.TenDaiLy,
+                                MaHTPP=pp.MaHTPP,
+                                TenHTPP=pp.TenHTPP
+                            }).ToListAsync();
+
+            return htdl;
         }
 
         // PUT: api/DaiLy/5

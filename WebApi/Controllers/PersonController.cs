@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApi.Data;
 using WebApi.Models;
+using WebApi.Shared;
 
 namespace WebApi.Controllers
 {
@@ -42,11 +43,22 @@ namespace WebApi.Controllers
                 return NotFound();
             return model;
         }
+        [HttpGet("getbyname/{name}")]
+        public async Task<ActionResult<IEnumerable<Person>>> GetPersonByName(string name)
+        {
+            name=Utils.GetInstance().ConvertToUnSign(name).ToLower().Trim();
+            var lst=_context.Person?.Where(f=>!string.IsNullOrWhiteSpace(f.NonSignName) 
+                && f.NonSignName.ToLower().Contains(name));
+            if(lst==null)return NotFound();
+
+            return await lst.ToListAsync();
+        }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPerson(string id, Person person)
         {
             if(id!=person.PersonId)
                 return BadRequest();
+            person.NonSignName=Utils.GetInstance().ConvertToUnSign(person.FullName).Trim();
             _context.Entry(person).State=EntityState.Modified;
             try{
                 await _context.SaveChangesAsync();
@@ -67,6 +79,7 @@ namespace WebApi.Controllers
             {
                 return Problem("Entity set 'ApplicationContext.Person' is null");
             }
+            person.NonSignName=Utils.GetInstance().ConvertToUnSign(person.FullName).Trim();
             _context.Person.Add(person);
             try{
                 await _context.SaveChangesAsync();

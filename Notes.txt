@@ -1,3 +1,6 @@
+git config --global user.email "cuongxmht@gmail.com"
+git config --global user.name "cuongxmht"
+
 git config --global --unset-all user.name
 
 git config --global --unset user.name
@@ -44,3 +47,7 @@ dotnet aspnet-codegenerator controller -name DaiLyController -m DaiLy -dc Applic
 
 dotnet ef migrations add InitialDb
 dotnet ef database update <Name Of Migrations>
+
+
+dotnet-aspnet-codegenerator controller -name HeThongPhanPhoiController -async -api -m HeThongPhanPhoi -dc WebApi.Data.ApplicationDbContext -outDir Controllers
+dotnet-aspnet-codegenerator controller -name DaiLyController -async -api -m DaiLy -dc WebApi.Data.ApplicationDbContext -outDir Controllers
