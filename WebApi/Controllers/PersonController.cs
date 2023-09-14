@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -13,6 +14,8 @@ using WebApi.Shared;
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
+    // [Authorize]
     public class PersonController : Controller
     {
         private readonly ILogger<PersonController> _logger;
@@ -26,6 +29,7 @@ namespace WebApi.Controllers
         {
           return (_context.Person?.Any(e => e.PersonId == id)).GetValueOrDefault();
         }
+        //[AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Person>?>> GetPersons()
         {
@@ -53,11 +57,11 @@ namespace WebApi.Controllers
 
             return await lst.ToListAsync();
         }
-        [HttpPut("{id}")]
+        [HttpPut("update-person/{id}")]
         public async Task<IActionResult> PutPerson(string id, Person person)
         {
             if(id!=person.PersonId)
-                return BadRequest();
+                return NotFound();
             person.NonSignName=Utils.GetInstance().ConvertToUnSign(person.FullName).Trim();
             _context.Entry(person).State=EntityState.Modified;
             try{
@@ -72,7 +76,7 @@ namespace WebApi.Controllers
             }
             return NoContent();
         }
-        [HttpPost()]
+        [HttpPost("create-person")]
         public async Task<ActionResult<Person>> PostPerson(Person person )
         {
             if(_context.Person==null)
@@ -94,7 +98,7 @@ namespace WebApi.Controllers
 
             return CreatedAtAction("GetPersonById",new {id=person.PersonId},person);
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeletePerson(string id)
         {
             if(_context.Person==null)
