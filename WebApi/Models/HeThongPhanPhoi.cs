@@ -13,6 +13,6 @@ namespace WebApi.Models
         [Key]
         public string MaHTPP { get; set; }
         public string TenHTPP { get; set; }
-        public List<DaiLy> DaiLies { get; set; }
+        //public List<DaiLy> DaiLies { get; set; }
     }
 }

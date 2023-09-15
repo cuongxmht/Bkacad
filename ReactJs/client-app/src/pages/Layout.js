@@ -18,7 +18,7 @@ const Layout = () => {
             <Link to="/person">Person</Link>
           </li>
           <li>
-            <Link to="/employee">Employee</Link>
+            <Link to="/daily">Đại lý</Link>
           </li>
         </ul>
       </nav> */}
@@ -44,7 +44,7 @@ const Layout = () => {
             </li>
             <li class="nav-item">
             {/* <Link to="/employee">Employee</Link> */}
-            <a class="nav-link" href="/employee">Employee</a>
+            <a class="nav-link" href="/daily">Đại lý</a>
             </li>
           </ul>
           

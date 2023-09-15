@@ -11,6 +11,7 @@ import NoPage from "./pages/NoPage";
 
 import Person from './pages/Person'
 import Employee from './pages/Employee'
+import DaiLy from './pages/DaiLy';
 // function App() {
 //   return (
 //     <div className="App">
@@ -126,6 +127,7 @@ export default function App(){
           <Route path="contact" element={<Contact />} />
           <Route path='person' element={<Person/>} />
           <Route path='employee' element={<Employee/>}/>
+          <Route path='daily' element={<DaiLy/>}/>
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

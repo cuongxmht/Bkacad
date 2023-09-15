@@ -29,7 +29,7 @@ namespace WebApi.Controllers
           {
               return NotFound();
           }
-            return await _context.DaiLies.ToListAsync();
+            return await _context.DaiLies.Include("HeThongPhanPhoi").ToListAsync();
         }
 
         // GET: api/DaiLy/5
