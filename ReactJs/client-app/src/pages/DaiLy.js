@@ -31,6 +31,20 @@ function DaiLy(){
         setEdit(true);
         setHTPPSelected(daiLys.maHTPP);
     }
+    async function SetNull()
+    {
+        setMa("");
+        setTen("");
+        setDiaChi("");
+        setNguoiDaiDien("");
+        setDienThoai("");
+        setMaHTPP("");
+        setEdit(false);
+
+        if(htpp_lst!=null){
+            setHTPPSelected(htpp_lst[0].maHTPP);
+        }
+    }
     async function setDaiLyNull(){
         setMa("");
         setTen("");
@@ -115,9 +129,9 @@ function DaiLy(){
     return (
         <div>
         <h1>Danh sách Đại lý</h1>
-        <hr></hr>
+        <hr/>
         <div class="container mt-4">
-          <form>
+          {/* <form> */}
             <div class="form-group">
             <div class="row">
                 <div className='col-md-6'>
@@ -173,12 +187,12 @@ function DaiLy(){
             </div>
 
             </div>
+
             <div class="mt-4 ">
-                <button class="btn btn-secondary mx-1" onClick={setDaiLyNull}>Clear</button>
+                <button class="btn btn-secondary mx-1" onClick={SetNull}>Clear</button>
                 <button class={isEdit? "btn btn-warning mx-1":"btn btn-primary mx-1"} onClick={isEdit?updateDaiLy : createDaiLy}>{isEdit?"Update" : "Register"}</button>
-              
             </div>
-          </form>
+          {/* </form> */}
         </div>
         <br></br>
         <table class="table table-hover">
