@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using VicemMvcIdentity.Data;
 using VicemMvcIdentity.Models.Entities;
+using VicemMvcIdentity.Models.Processs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,22 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+//Cấu hình khoá tài khoản khi đang nhập sai nhiều lần
+builder.Services.Configure<IdentityOptions>(options=>{
+options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromMinutes(5);
+options.Lockout.MaxFailedAccessAttempts=5;
+options.Lockout.AllowedForNewUsers=true;
+});
+
+builder.Services.AddTransient<EmployeeSeeder>();
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope()) 
+{
+    var services = scope.ServiceProvider;
+    var seeder = services.GetRequiredService<EmployeeSeeder>();
+    seeder.SeedEmployees(1000);
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

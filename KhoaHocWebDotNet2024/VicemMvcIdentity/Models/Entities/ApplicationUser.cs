@@ -4,7 +4,7 @@ namespace VicemMvcIdentity.Models.Entities
 {
     public class ApplicationUser: IdentityUser
     {
-[PersonalData]
+        [PersonalData]
         public string? FullName { get; set; }
     }
 }
