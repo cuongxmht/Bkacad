@@ -1,4 +1,12 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using DemoMVC;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("AppDataContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDataContextConnection' not found.");
+
+builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDataContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
