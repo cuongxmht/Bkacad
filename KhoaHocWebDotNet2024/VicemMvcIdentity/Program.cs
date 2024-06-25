@@ -1,10 +1,15 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using VicemMvcIdentity.Data;
 using VicemMvcIdentity.Models.Entities;
 using VicemMvcIdentity.Models.Processs;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddOptions();
+var mailSettings=builder.Configuration.GetSection("MailSettings");
+builder.Services.Configure<MailSettings>(mailSettings);
+builder.Services.AddTransient<IEmailSender,SendMailService>();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
