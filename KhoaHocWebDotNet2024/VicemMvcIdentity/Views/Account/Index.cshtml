@@ -1,0 +1,21 @@
+@using VicemMvcIdentity.Models.Entities
+@model IEnumerable<ApplicationUser>
+    
+
+<table class="table w3-table-all">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+<tbody>
+    @foreach(var user in Model)
+    {
+    <tr>
+        <td>@user.FullName</td>
+        <td>@user.Email</td>
+    </tr>
+    }
+</tbody>
+</table>
