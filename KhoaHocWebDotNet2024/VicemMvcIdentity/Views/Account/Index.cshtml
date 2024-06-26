@@ -1,21 +1,35 @@
-@using VicemMvcIdentity.Models.Entities
-@model IEnumerable<ApplicationUser>
-    
-
-<table class="table w3-table-all">
+@using Microsoft.AspNetCore.Identity
+@using VicemMvcIdentity.Models.ViewModels
+@model IEnumerable<UserWithRoleVM>
+<table class="table">
     <thead>
         <tr>
-            <th>Full Name</th>
-            <th>Email</th>
+            <th>Username</th>
+            <th>PhoneNumber</th>
+            <th>Roles</th>
+            <th>Action</th>
         </tr>
     </thead>
-<tbody>
-    @foreach(var user in Model)
-    {
-    <tr>
-        <td>@user.FullName</td>
-        <td>@user.Email</td>
-    </tr>
-    }
-</tbody>
+    <tbody>
+        @foreach (var userWithRoles in Model)
+        {
+            <tr>
+                <td>@userWithRoles.User.UserName</td>
+                <td>@userWithRoles.User.PhoneNumber</td>
+                <td>
+                    @foreach (var role in userWithRoles.Roles)
+                    {
+                        <span>@role,</span>
+                        <br />
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Account" asp-action="AssignRole" asp-route-userId="@userWithRoles.User.Id">Assign
+                        Role</a> |
+                    <a asp-controller="Account" asp-action="AddClaim" asp-route-userId="@userWithRoles.User.Id">Add
+                        Claim</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

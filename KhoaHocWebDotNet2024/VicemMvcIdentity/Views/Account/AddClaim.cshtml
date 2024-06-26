@@ -1,0 +1,41 @@
+@model VicemMvcIdentity.Models.ViewModels.UserClaimVM
+
+<h3>User: @Model.UserName</h3>
+<form asp-controller="Account" asp-action="AddClaim" method="post">
+    <div class="row">
+        <input type="hidden" name="userId" value="@Model.UserId" />
+        <input type="text" id="claimType" name="claimType" class="form-control col" placeholder="Enter Claim Type" />
+        <input type="text" id="claimValue" name="claimValue" class="form-control col" placeholder="Enter Claim Value" />
+        <button type="submit" class="col btn btn-success">Add new Claim</button>
+    </div>
+</form>
+<hr>
+<h3>Current Claims:</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Claim Type</th>
+            <th>Claim Value</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model.UserClaims)
+        {
+            <tr>
+                <td>@claim.Type</td>
+                <td>@claim.Value</td>
+                <td>
+                    <form asp-controller="Account" asp-action="DeleteClaim" method="post">
+                        <input type="hidden" name="userId" value="@Model.UserId" />
+                        <input type="hidden" name="claimType" value="@claim.Type" />
+                        <input type="hidden" name="claimValue" value="@claim.Value" />
+                        <button type="submit" class="btn btn-danger">Delete Claim</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

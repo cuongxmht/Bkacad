@@ -1,0 +1,17 @@
+@using VicemMvcIdentity.Models.ViewModels
+@model AssignRoleVM
+
+<h2>Assign Role</h2>
+<hr>
+<form asp-action="AssignRole" method="post">
+    @foreach (var role in Model.AllRoles)
+    {
+        <div>
+            <input class="checkbox" type="checkbox" id="@role.Id" name="SelectedRoles" value="@role.Name"
+            @(Model.SelectedRoles != null && Model.SelectedRoles.Contains(role.Name) ? "checked" : "")>
+            <label for="@role.Id">@role.Name</label>
+        </div>
+    }
+    <input type="hidden" name="UserId" value="@Model.UserId">
+    <button type="submit" class="btn btn-primary">Assign Roles</button>
+</form>

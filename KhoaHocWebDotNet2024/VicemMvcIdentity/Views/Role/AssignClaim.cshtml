@@ -1,0 +1,28 @@
+@model VicemMvcIdentity.Models.ViewModels.RoleClaimVM
+<h3>Assign Claims to @Model.RoleName</h3>
+<form asp-action="AssignClaim" method="post">
+    <input type="hidden" asp-for="RoleId" />
+    <input type="hidden" asp-for="RoleName" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Permission</th>
+                <th>Assigned</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Claims.Count; i++)
+            {
+                <tr>
+                    <td>@Model.Claims[i].Value</td>
+                    <td>
+                        <input type="checkbox" asp-for="Claims[i].Selected" />
+                        <input type="hidden" asp-for="Claims[i].Type" />
+                        <input type="hidden" asp-for="Claims[i].Value" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

@@ -1,6 +1,6 @@
 using VicemMvcIdentity.Models.Entities;
 
-namespace VicemMVCIdentity.Models.ViewModels
+namespace VicemMvcIdentity.Models.ViewModels
 {
     public class UserWithRoleVM
     {

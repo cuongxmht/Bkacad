@@ -1,4 +1,4 @@
-namespace VicemMVCIdentity.Models.Process
+namespace VicemMvcIdentity.Models.Process
 {
     public enum SystemPermissions
     {

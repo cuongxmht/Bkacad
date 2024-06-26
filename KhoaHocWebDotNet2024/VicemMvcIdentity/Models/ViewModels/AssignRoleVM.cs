@@ -1,4 +1,4 @@
-namespace VicemMVCIdentity.Models.ViewModels
+namespace VicemMvcIdentity.Models.ViewModels
 {
     public class AssignRoleVM
     {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace VicemMvcIdentity.Models.Processs
+namespace VicemMvcIdentity.Models.Process
 {
     public class SendMailService: IEmailSender
     {

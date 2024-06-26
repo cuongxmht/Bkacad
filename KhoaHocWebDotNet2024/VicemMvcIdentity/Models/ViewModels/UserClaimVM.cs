@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace VicemMVCIdentity.Models.ViewModels
+namespace VicemMvcIdentity.Models.ViewModels
 {
     public class UserClaimVM
     {

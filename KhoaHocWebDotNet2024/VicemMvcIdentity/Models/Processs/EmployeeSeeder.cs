@@ -2,7 +2,7 @@ using Bogus;
 using VicemMvcIdentity.Data;
 using VicemMvcIdentity.Models.Entities;
 
-namespace VicemMvcIdentity.Models.Processs
+namespace VicemMvcIdentity.Models.Process
 {
     public class EmployeeSeeder
     {

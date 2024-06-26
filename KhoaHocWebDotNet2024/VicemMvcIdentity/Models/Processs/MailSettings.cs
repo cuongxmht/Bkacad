@@ -1,4 +1,4 @@
-namespace VicemMvcIdentity.Models.Processs
+namespace VicemMvcIdentity.Models.Process
 {
     public class MailSettings
     {

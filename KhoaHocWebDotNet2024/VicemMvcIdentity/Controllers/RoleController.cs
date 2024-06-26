@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using VicemMVCIdentity.Models.Process;
-using VicemMVCIdentity.Models.ViewModels;
+using VicemMvcIdentity.Models.Process;
+using VicemMvcIdentity.Models.ViewModels;
 
 namespace VicemMvcIdentity.Controllers
 {
@@ -16,16 +16,16 @@ namespace VicemMvcIdentity.Controllers
             _roleManager=roleManager;
         }
         
-        [Authorize(Policy = nameof(SystemPermissions.RoleView))]
+        // [Authorize(Policy = nameof(SystemPermissions.RoleView))]
         public async Task<IActionResult> Index()
         {
             var roles = await _roleManager.Roles.ToListAsync();
             return View(roles);
         }
-        [Authorize(Policy = nameof(SystemPermissions.RoleCreate))]
+        // [Authorize(Policy = nameof(SystemPermissions.RoleCreate))]
         public IActionResult Create() => View();
         
-        [Authorize(Policy = nameof(SystemPermissions.RoleCreate))]
+        // [Authorize(Policy = nameof(SystemPermissions.RoleCreate))]
         [HttpPost]
         public async Task<IActionResult> Create(string roleName)
         {
@@ -36,7 +36,7 @@ namespace VicemMvcIdentity.Controllers
             }
             return RedirectToAction("Index");
         }
-        [Authorize(Policy = nameof(SystemPermissions.RoleDelete))]
+        // [Authorize(Policy = nameof(SystemPermissions.RoleDelete))]
         public async Task<IActionResult> Edit(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -46,7 +46,7 @@ namespace VicemMvcIdentity.Controllers
             }
             return View(role);
         }
-        [Authorize(Policy = nameof(SystemPermissions.RoleDelete))]
+        // [Authorize(Policy = nameof(SystemPermissions.RoleDelete))]
         [HttpPost]
         public async Task<IActionResult> Edit(string id, string newName)
         {
@@ -59,7 +59,7 @@ namespace VicemMvcIdentity.Controllers
             await _roleManager.UpdateAsync(role);
             return RedirectToAction("Index");
         }
-        [Authorize(Policy = nameof(SystemPermissions.RoleDelete))]
+        // [Authorize(Policy = nameof(SystemPermissions.RoleDelete))]
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
@@ -70,7 +70,7 @@ namespace VicemMvcIdentity.Controllers
             }
             return RedirectToAction("Index");
         }
-        [Authorize(Policy = nameof(SystemPermissions.AssignClaim))]
+        // [Authorize(Policy = nameof(SystemPermissions.AssignClaim))]
         public async Task<IActionResult> AssignClaim(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -95,7 +95,7 @@ namespace VicemMvcIdentity.Controllers
             };
             return View(model);
         }
-        [Authorize(Policy = nameof(SystemPermissions.AssignClaim))]
+        // [Authorize(Policy = nameof(SystemPermissions.AssignClaim))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignClaim(RoleClaimVM model)
