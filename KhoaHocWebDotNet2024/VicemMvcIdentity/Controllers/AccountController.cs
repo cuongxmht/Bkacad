@@ -90,7 +90,18 @@ namespace VicemMvcIdentity.Controllers
         {
             var user = await _userManager.FindByIdAsync(userId);
             var userClaims = await _userManager.GetClaimsAsync(user);
-            var model = new UserClaimVM(userId, user.UserName, userClaims.ToList());
+            // var model = new UserClaimVM(userId, user.UserName, userClaims.ToList());
+             var allPermissions = Enum.GetValues(typeof(SystemPermissions)).Cast<SystemPermissions>().Select(p => p.ToString()).ToList();
+            var allUC=new List<UserClaim>();
+            foreach (var permission in allPermissions)
+            {
+                allUC.Add(new UserClaim{
+                    Type="Permission",
+                    Value=permission,
+                    Selected=userClaims?.Any(c => c.Value==permission)   ?? false
+                });
+            }
+            var model = new UserClaimVM(userId, user.UserName, userClaims.ToList(),allUC);
             return View(model);
         }
         
@@ -106,6 +117,33 @@ namespace VicemMvcIdentity.Controllers
             }
             return View();
         }
+
+        [Authorize(Policy = nameof(SystemPermissions.AddClaim))]
+        [HttpPost("AddMultiClaims")]
+        public async Task<IActionResult> AddMultiClaims(string userId, UserClaimVM model)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            foreach (var claim in model.AllUserClaims)
+            {
+                if(!claim.Selected) continue;
+                if(!userClaims.Any(p => p.Value == claim.Value))
+                {
+                    var result = await _userManager.AddClaimAsync(user, new Claim("Permission", claim.Value));
+                }
+            }
+            
+            foreach (var claim in userClaims)
+            {
+                if(!model.AllUserClaims.Any(a=>a.Value == claim.Value && a.Selected))
+                {
+                    _ = await _userManager.RemoveClaimAsync(user, claim);
+                }
+            }
+            // return View("AddClaim");
+            return RedirectToAction("AddClaim", new { userId });
+        }
+
         
         [Authorize(Policy = nameof(SystemPermissions.DeleteClaim))]
         [HttpPost]
