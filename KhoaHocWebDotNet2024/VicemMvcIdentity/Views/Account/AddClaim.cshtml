@@ -10,7 +10,7 @@
         <button type="submit" class="col btn btn-success">Add new Claim</button>
     </div>
 </form> *@
-<hr>
+@* <hr>
 <h3>Current Claims:</h3>
 <table class="table">
     <thead>
@@ -37,7 +37,7 @@
             </tr>
         }
     </tbody>
-</table>
+</table> *@
 
 <form asp-controller="Account" asp-action="AddMultiClaims" method="post">
 <table>
@@ -48,14 +48,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var claim in Model.AllUserClaims)
+        @foreach(var claim in Enum.GetValues(typeof(SystemPermissions)).Cast<SystemPermissions>())
         {
             <tr>
-                <td>@claim.Value</td>
+                <td>@claim.ToString()</td>
                 <td>
                       <div>
-            <input class="checkbox" type="checkbox" name="AllUserClaims" value="@claim.Value"
-            @(claim.Selected ? "checked" : "")>
+            <input class="checkbox" type="checkbox" name="SelectedClaims" value="@claim.ToString()"
+            @(Model?.SelectedClaims?.Any(a=> a == claim.ToString()) == true ? "checked" : "")>
             @* <label >@claim.ToString()</label> *@
         </div>
             

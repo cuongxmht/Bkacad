@@ -35,6 +35,7 @@ namespace VicemMvcIdentity.Controllers
         }
         
         [Authorize(Policy = nameof(SystemPermissions.AssignRole))]
+        [HttpGet]
         public async Task<IActionResult> AssignRole(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -90,18 +91,14 @@ namespace VicemMvcIdentity.Controllers
         {
             var user = await _userManager.FindByIdAsync(userId);
             var userClaims = await _userManager.GetClaimsAsync(user);
-            // var model = new UserClaimVM(userId, user.UserName, userClaims.ToList());
+            var model = new UserClaimVM(userId, user.UserName, userClaims.ToList());
              var allPermissions = Enum.GetValues(typeof(SystemPermissions)).Cast<SystemPermissions>().Select(p => p.ToString()).ToList();
-            var allUC=new List<UserClaim>();
-            foreach (var permission in allPermissions)
+            var allUC=new List<string>();
+            foreach (var claim in userClaims)
             {
-                allUC.Add(new UserClaim{
-                    Type="Permission",
-                    Value=permission,
-                    Selected=userClaims?.Any(c => c.Value==permission)   ?? false
-                });
+                allUC.Add(claim.Value);
             }
-            var model = new UserClaimVM(userId, user.UserName, userClaims.ToList(),allUC);
+            model.SelectedClaims = allUC;
             return View(model);
         }
         
@@ -124,24 +121,23 @@ namespace VicemMvcIdentity.Controllers
         {
             var user = await _userManager.FindByIdAsync(userId);
             var userClaims = await _userManager.GetClaimsAsync(user);
-            foreach (var claim in model.AllUserClaims)
+            foreach (var claim in model.SelectedClaims)
             {
-                if(!claim.Selected) continue;
-                if(!userClaims.Any(p => p.Value == claim.Value))
+                if(!userClaims.Any(p => p.Value == claim))
                 {
-                    var result = await _userManager.AddClaimAsync(user, new Claim("Permission", claim.Value));
+                    var result = await _userManager.AddClaimAsync(user, new Claim("Permission", claim));
                 }
             }
             
             foreach (var claim in userClaims)
             {
-                if(!model.AllUserClaims.Any(a=>a.Value == claim.Value && a.Selected))
+                if(!model.SelectedClaims.Any(a=>a == claim.Value))
                 {
                     _ = await _userManager.RemoveClaimAsync(user, claim);
                 }
             }
             // return View("AddClaim");
-            return RedirectToAction("AddClaim", new { userId });
+            return RedirectToAction("");
         }
 
         

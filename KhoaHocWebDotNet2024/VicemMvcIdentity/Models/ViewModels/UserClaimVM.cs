@@ -6,11 +6,11 @@ namespace VicemMvcIdentity.Models.ViewModels
     {
         public string UserId { get; set; }
         public string UserName { get; set; }
-        public List<Claim> UserClaims { get; set; }=new List<Claim>();
-        public List<UserClaim> AllUserClaims { get; set; }=new List<UserClaim>();
+        public List<Claim> UserClaims { get; set; }
+        public List<string> SelectedClaims { get; set; }
         public UserClaimVM()
         {
-            UserId="";UserName="";
+            UserId="";UserName="";UserClaims=new List<Claim>();
         }
         public UserClaimVM(string userId, string userName, List<Claim> userClaims)
         {
@@ -18,13 +18,7 @@ namespace VicemMvcIdentity.Models.ViewModels
             UserName = userName;
             UserClaims = userClaims;
         }
-        public UserClaimVM(string userId, string userName, List<Claim> userClaims, List<UserClaim> allUserClaims )
-        {
-            UserId = userId;
-            UserName = userName;
-            UserClaims = userClaims;
-            AllUserClaims=allUserClaims;
-        }
+        
     }
     public class UserClaim{
         public string Type { get; set; }
