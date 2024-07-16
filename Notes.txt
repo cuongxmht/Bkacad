@@ -51,3 +51,8 @@ dotnet ef database update <Name Of Migrations>
 
 dotnet-aspnet-codegenerator controller -name HeThongPhanPhoiController -async -api -m HeThongPhanPhoi -dc WebApi.Data.ApplicationDbContext -outDir Controllers
 dotnet-aspnet-codegenerator controller -name DaiLyController -async -api -m DaiLy -dc WebApi.Data.ApplicationDbContext -outDir Controllers
+
+
+
+dotnet aspnet-codegenerator controller -name EmployeeController -m Employee -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MemberUnitController -m MemberUnit -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite

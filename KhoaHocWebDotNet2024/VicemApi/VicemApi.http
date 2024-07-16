@@ -1,0 +1,6 @@
+@VicemApi_HostAddress = http://localhost:5029
+
+GET {{VicemApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
