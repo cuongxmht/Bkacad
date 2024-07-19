@@ -34,6 +34,7 @@ const Menu = () => {
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
           <Navbar.Brand href="/">Home</Navbar.Brand>
+          <Nav.Link href='/dai-ly'>Dai ly</Nav.Link>
           {isLoggedIn && (
             <>
               <Nav.Link href='/user'>User</Nav.Link>

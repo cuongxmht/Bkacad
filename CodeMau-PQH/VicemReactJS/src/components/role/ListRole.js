@@ -7,8 +7,13 @@ import { FaRegEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { MdAssignmentAdd, MdAssignmentInd } from "react-icons/md";
 import refreshAccessToken from '../account/RefreshAccessToken';
+import { useNavigate } from 'react-router-dom';
+import Error403 from '../error/Error403';
+
+
 
 const ListRole = () => {
+    const navigate = useNavigate();
     const apiUrl = process.env.REACT_APP_API_BASE_URL + '/api/Role/';
     const [roles, setRoles] = useState([]);
     const [showAddModal, setShowAddModal] = useState(false);
@@ -77,6 +82,7 @@ const ListRole = () => {
     }
 
     if (error) {
+        navigate('/403');
         return <div>Error: {error.message}</div>;
     }
     const handleConfirmDelete = async () => {

@@ -6,6 +6,8 @@ import ListEmployee from './components/employee/ListEmployee';
 import ListRole from './components/role/ListRole';
 import ListUser from './components/account/ListUser';
 import Error403 from './components/error/Error403';
+import ListDaily from './components/daily/ListDaily';
+import DaiLyList from './components/daily/DaiLyList';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           <Route path='/role' element={<ListRole/>}/>
           <Route path='/user' element={<ListUser/>}/>
           <Route path='/403' element={<Error403/>}/>
+          <Route path='/dai-ly' element={<DaiLyList/>}/>
         </Routes>
       </div>
     </Router>

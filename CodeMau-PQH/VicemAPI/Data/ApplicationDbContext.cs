@@ -25,5 +25,6 @@ namespace VicemAPI.Data
             builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
             builder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
         }
+        public DbSet<VicemAPI.Models.Entities.DaiLy> DaiLy { get; set; } = default!;
     }
 }
